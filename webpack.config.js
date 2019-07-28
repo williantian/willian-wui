@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
    mode: 'production', //值是development或production 正在开发或者进行发布
    entry: {
@@ -9,6 +10,11 @@ module.exports = {
        // 所有输出文件的目标路径
        // 必须是绝对路径（使用 Node.js 的 path 模块）
    },
+   plugins: [new HtmlWebpackPlugin({
+       title: 'WUI', //在html文件中的相应的写作
+       //<title><%= htmlWebpackPlugin.options.title %></title>才能生效
+       template: 'index.html'
+   })],
    module: {
        rules:[
            {
