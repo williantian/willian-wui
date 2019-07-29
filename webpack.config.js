@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-   mode: 'production', //值是development或production 正在开发或者进行发布
+   mode: 'development', //值是development或production 正在开发或者进行发布
    entry: {
        index: './lib/index.tsx' //为安全起见从./开始写 后面接路径
    },

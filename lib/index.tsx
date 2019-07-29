@@ -1,3 +1,4 @@
-const div = document.createElement('div')
-div.innerText = 'div'
-document.body.appendChild(div)
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+console.log(React)
+console.log(ReactDOM)
