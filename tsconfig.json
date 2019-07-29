@@ -5,9 +5,9 @@
       "baseUrl": ".",
       "module": "esnext",
       "target": "es5",
-      "lib": ["es6", "dom"],
+      "lib": ["es6", "dom"], //lib可用es6读取
       "sourceMap": true,
-      "jsx": "react",
+      "jsx": "react", //jsx文件可以识别
       "moduleResolution": "node",
       "rootDir": ".",
       "forceConsistentCasingInFileNames": true,
