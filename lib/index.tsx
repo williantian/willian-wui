@@ -4,11 +4,14 @@ import Icon from './icon';
 
 const fn: React.MouseEventHandler = (e) => {
     console.log(e.target)
-    console.log('hi')
 }
 ReactDOM.render(
     <div>
-        <Icon name='wechat' onClick = {fn} />
+        <Icon name='wechat' 
+            onClick={fn}
+            onMouseEnter={() => console.log('enter')}
+            onMouseLeave={() => console.log('leave')}
+        />
     </div>,
     document.getElementById('root')
 );
