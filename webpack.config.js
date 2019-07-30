@@ -23,6 +23,10 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader'//loader需要安装
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-sprite-loader'
             }
         ]
     },
