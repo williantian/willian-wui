@@ -1,5 +1,6 @@
 import React from 'react';
-import './importIcons'
+import './importIcons';
+import './icon.scss';
 
 interface IconProps {
     name: string 
@@ -7,11 +8,9 @@ interface IconProps {
 // Icon:React.FunctionComponent<IconProps> 添加name属性到props
 const Icon:React.FunctionComponent<IconProps> = (props)=>{
     return (
-        <span>
-            <svg>
-                <use xlinkHref={`#${props.name}`}></use>
-            </svg>
-        </span>
+        <svg className = 'icon'>
+            <use xlinkHref={`#${props.name}`}></use>
+        </svg>
     )
 }
 export default Icon ;
