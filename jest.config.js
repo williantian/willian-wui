@@ -9,7 +9,8 @@ module.exports = {
     moduleDirectories: ['node_modules'],
     globals: {
         'ts-jest': {
-            tsConfig: 'tsconfig.test.json',
+            tsConfig: 'tsconfig.json',
+            // tsConfig: 'tsconfig.test.json', 若写做这样会一直报引入方式不当错误
         },
     },
     moduleNameMapper: {

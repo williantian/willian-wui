@@ -1,0 +1,3 @@
+{
+    "extend": "./tsconfig.json" //我这里是修改了jest.config.js 没有引入这个文件
+}
