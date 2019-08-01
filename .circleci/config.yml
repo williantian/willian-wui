@@ -1,0 +1,73 @@
+#https://github.com/revolunet/create-react-app-circleci/blob/master/.circleci/config.yml
+defaults: &defaults
+  docker:
+  - image: circleci/node:8
+
+version: 2
+jobs:
+  prepare:
+    <<: *defaults
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - v2-dependencies-{{ checksum "package.json" }}  #md5将package.json作为key 创建到缓存并将node_modules缓存 形成快照
+    - run: yarn install
+    - save_cache:
+        paths:
+        - node_modules
+        key: v2-dependencies-{{ checksum "package.json" }}
+    - persist_to_workspace:
+        root: .
+        paths:
+        - node_modules
+  build:
+    <<: *defaults
+    steps:
+    - checkout
+    - attach_workspace:
+        at: .
+    - run: yarn build
+    - persist_to_workspace:  #持久化 不删除文件
+        root: .
+        paths:
+        - dist
+        - package.json
+        - LICENSE
+        - README.md
+  test:
+    <<: *defaults
+    steps:
+    - checkout
+    - attach_workspace:
+        at: .
+    - run: yarn ci
+    - store_test_results:
+        path: test-results
+  publish:
+    <<: *defaults
+    steps:
+    - attach_workspace:  #将build产生放过来
+        at: .
+    - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+    - run: npm publish
+
+workflows:    #让circle ci 知道工作流程 运行顺序
+  version: 2
+  build_accept_deploy:
+    jobs:
+    - prepare
+    - build:
+        requires:
+        - test
+    - test:
+        requires:
+        - prepare
+    - publish:
+        requires:
+        - build
+        filters:
+          tags:
+            only: /^v[0-9]+(\.[0-9]+)*/
+          branches:
+            ignore: /.*/
