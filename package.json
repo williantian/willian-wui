@@ -1,6 +1,6 @@
 {
   "name": "wui-88-88",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/lib/index",
   "types": "dist/lib/index",
