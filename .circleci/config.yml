@@ -1,19 +1,19 @@
 #https://github.com/revolunet/create-react-app-circleci/blob/master/.circleci/config.yml
 defaults: &defaults
   docker:
-  - image: circleci/node:8
+  - image: circleci/node:8 #使用node第8版测试
 
-version: 2
+version: 2 #ciecleCI
 jobs:
   prepare:
     <<: *defaults
     steps:
-    - checkout
-    - restore_cache:
+    - checkout  #迁出代码
+    - restore_cache:  
         keys:
         - v2-dependencies-{{ checksum "package.json" }}  #md5将package.json作为key 创建到缓存并将node_modules缓存 形成快照
-    - run: yarn install
-    - save_cache:
+    - run: yarn install #安装所有依赖
+    - save_cache:   #保存缓存
         paths:
         - node_modules
         key: v2-dependencies-{{ checksum "package.json" }}

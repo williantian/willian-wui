@@ -51,7 +51,9 @@ typings/
 /dist/*
 # Output of 'npm pack'
 *.tgz
-
+/.idea
+/dist/*
+/test-results
 # Yarn Integrity file
 .yarn-integrity
 
