@@ -34,7 +34,7 @@ jobs:
         - dist
         - package.json
         - LICENSE
-        - README.md
+        - README.md  #必须有这四个文件才能发布
   test:
     <<: *defaults
     steps:
@@ -44,12 +44,12 @@ jobs:
     - run: yarn ci
     - store_test_results:
         path: test-results
-  publish:
+  publish:    #可以自动publish
     <<: *defaults
     steps:
-    - attach_workspace:  #将build产生放过来
-        at: .
-    - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+    - attach_workspace:  
+        at: .           #将build产生放过来
+    - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN  #设置token 不加的话会一直提示需要认证
     - run: npm publish
 
 workflows:    #让circle ci 知道工作流程 运行顺序
@@ -66,8 +66,3 @@ workflows:    #让circle ci 知道工作流程 运行顺序
     - publish:
         requires:
         - build
-        filters:
-          tags:
-            only: /^v[0-9]+(\.[0-9]+)*/
-          branches:
-            ignore: /.*/
