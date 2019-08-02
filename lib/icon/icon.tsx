@@ -3,8 +3,9 @@ import './importIcons';
 import './icon.scss';
 import classes from '../helpers/classes';
 
-interface IconProps extends React.SVGAttributes<Element> {
+interface IconProps extends React.SVGAttributes<SVGElement> {
     //此处写React.SVGAttributes<SVGElement> 会有冲突报错
+    //在index.tsx之前代码的情况下
     name: string;
 }
 // Icon:React.FunctionComponent<IconProps> 添加name属性到props
