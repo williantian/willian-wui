@@ -4,7 +4,9 @@
   "description": "",
   "main": "dist/lib/index",
   "types": "dist/lib/index",
-  "files":["/dist/**/*"],
+  "files": [
+    "/dist/**/*"
+  ],
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
@@ -61,7 +63,10 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "@types/react-router-dom": "^4.3.4",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1"
   }
 }
