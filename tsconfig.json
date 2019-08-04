@@ -13,7 +13,7 @@
       "forceConsistentCasingInFileNames": true,
       "noImplicitReturns": true,
       "noImplicitThis": true,
-      "noImplicitAny": true,
+      "noImplicitAny": true,   //不允许有任何隐式的any
       "importHelpers": true,
       "strictNullChecks": true,
       // "suppressImplicitAnyIndexErrors": true,
