@@ -1,0 +1,19 @@
+[class^=wui-]{ //css选择器 控制以fui-开头的class样式 缺点是无法选择到伪元素
+  box-sizing: border-box;
+  &::after,
+  &::before{
+    box-sizing: border-box;
+  }
+}
+button{
+  box-sizing: border-box;
+  height: 32px;
+  margin: 0 4px;
+  border-radius: 4px;
+  &:first-child{
+    margin-left: 0;
+  }
+  &:last-child{
+    margin-right: 0;
+  }
+}
