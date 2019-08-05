@@ -11,18 +11,18 @@ interface Props {
   closeOnClickMask?: boolean; //设置遮罩层点击是否关闭对话框
 }
 const scopedClass = scopedClassMaker('wui-dialog');
-const sc = scopedClass
+const sc = scopedClass;
 const Dialog: React.FunctionComponent<Props> = (props) => {
   const onClickClose: React.MouseEventHandler = (e) => {
     props.onClose(e);
-  }
+  };
   const onClickMask: React.MouseEventHandler = (e) => {
     if (props.closeOnClickMask) {props.onClose(e)}
-  }
+  };
   const result = props.visible &&
     <Fragment>
-      <div className={sc('mask')} onClick={onClickMask}></div>
-      <div className={sc()}>
+      <div className={sc('mask')} onClick={onClickMask}/>
+      <div className={sc('')}>
         <div className={sc('close')} onClick={onClickClose}>
           <Icon name='close'/>
         </div>
@@ -36,46 +36,47 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
         </footer>
         }
       </div>
-    </Fragment>
+    </Fragment>;
   //map设置数组的key  这个方法只要渲染了就会复制 会有性能的损失
   return (
     ReactDOM.createPortal(result, document.body)
     /*这个传送门API 可以把React元素渲染到指定的地方*/
   )
 };
-Dialog.defaultProps = {
+ Dialog.defaultProps = {
   closeOnClickMask: false
 };
 const modal = (content: string | ReactNode, buttons?: any,afterClose?:()=>void) => {
   const onClose = () => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div)
-    ReactDOM.unmountComponentAtNode(div)
+    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+    ReactDOM.unmountComponentAtNode(div);
     div.remove()
-  }
+  };
   const component = <Dialog visible={true}
                             buttons={buttons}
-                            onClose={()=>{onClose(); afterClose && afterClose()}}>{content}</Dialog>
-  const div = document.createElement('div')
-  document.body.appendChild(div)
-  ReactDOM.render(component, div)
+                            onClose={()=>{onClose(); afterClose && afterClose()}}>
+    {content}</Dialog>;
+  const div = document.createElement('div');
+  document.body.appendChild(div);
+  ReactDOM.render(component, div);
   return onClose
 };
 const alert = (content: string) => {
-  const buttons = [<button onClick={()=>close()}>ok</button>]
+  const buttons = [<button onClick={()=>close()}>ok</button>];
   const close = modal(content,buttons)
 };
 const confirm = (content: string, yes?: () => void, no?: () => void) => {
   const buttons = [
     <button onClick={() => {onYes()}}>yes</button>,
     <button onClick={() => {onNo()}}>no</button>
-  ]
-  const close = modal(content, buttons, no)
+  ];
+  const close = modal(content, buttons, no);
   const onYes = () => {
-    close()
+    close();
     yes && yes()
-  }
+  };
   const onNo = () => {
-    close()
+    close();
     no && no()
   }
 };
