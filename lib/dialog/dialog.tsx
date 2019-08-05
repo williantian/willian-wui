@@ -19,7 +19,7 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
   const onClickMask: React.MouseEventHandler = (e) => {
     if (props.closeOnClickMask) {props.onClose(e)}
   }
-  const x = props.visible ?
+  const result = props.visible &&
     <Fragment>
       <div className={sc('mask')} onClick={onClickMask}></div>
       <div className={sc()}>
@@ -36,11 +36,10 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
         </footer>
         }
       </div>
-    </Fragment> :
-    null
+    </Fragment>
   //map设置数组的key  这个方法只要渲染了就会复制 会有性能的损失
   return (
-    ReactDOM.createPortal(x, document.body)
+    ReactDOM.createPortal(result, document.body)
     /*这个传送门API 可以把React元素渲染到指定的地方*/
   )
 };
