@@ -28,12 +28,12 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
         </div>
         <header className={sc('header')}>提示</header>
         <main className={sc('main')}>{props.children}</main>
-        {props.buttons && props.buttons.length > 0  &&
-          <footer className={sc('footer')}>
-            {props.buttons && props.buttons.map((button, index) =>
-              React.cloneElement(button, {key: index})
-            )}
-          </footer>
+        {props.buttons && props.buttons.length > 0 &&
+        <footer className={sc('footer')}>
+          {props.buttons && props.buttons.map((button, index) =>
+            React.cloneElement(button, {key: index})
+          )}
+        </footer>
         }
       </div>
     </Fragment> :
@@ -47,62 +47,41 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
 Dialog.defaultProps = {
   closeOnClickMask: false
 };
-const alert = (content: string) => {
+const x = (content: string | ReactNode, buttons?: any,afterClose?:()=>void) => {
   const onClose = () => {
     ReactDOM.render(React.cloneElement(component, {visible: false}), div)
     ReactDOM.unmountComponentAtNode(div)
     div.remove()
   }
   const component = <Dialog visible={true}
-                            buttons={[<button onClick={onClose}>ok</button>]}
-                            onClose={() => {
-                              ReactDOM.render(React.cloneElement(component, {visible: false}), div)
-                              ReactDOM.unmountComponentAtNode(div) //组件从div上卸载下来 安全销毁元素上的事件
-                              div.remove()
-                            }}>{content}</Dialog>
+                            buttons={buttons}
+                            onClose={()=>{onClose(); afterClose && afterClose()}}>{content}</Dialog>
   const div = document.createElement('div')
-  document.body.appendChild(div)
-  ReactDOM.render(component, div)
-};
-const confirm = (content: string, yes?: () => void, no?: () => void) => {
-  const onYes = () => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div)
-    ReactDOM.unmountComponentAtNode(div)
-    div.remove()
-    yes && yes()
-  }
-  const onNo = () => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div)
-    ReactDOM.unmountComponentAtNode(div)
-    div.remove()
-    no && no()
-  }
-  const component = (<Dialog
-    onClose={() => {
-      ReactDOM.render(React.cloneElement(component, {visible: false}), div)
-      ReactDOM.unmountComponentAtNode(div)
-      div.remove()
-      no && no()
-    }}
-    buttons={[
-      <button onClick={onYes}>yes</button>,
-      <button onClick={onNo}>no</button>
-    ]} visible={true}>{content}</Dialog>)
-  const div = document.createElement('div')
-  document.body.appendChild(div)
-  ReactDOM.render(component, div)
-};
-const modal = (content: ReactNode) => {
-  const onClose = () => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div)
-    ReactDOM.unmountComponentAtNode(div)
-    div.remove()
-  }
-  const component = <Dialog visible={true} onClose={onClose}>{content}</Dialog>
-  const div = document.createElement("div")
   document.body.appendChild(div)
   ReactDOM.render(component, div)
   return onClose
+};
+const alert = (content: string) => {
+  const buttons = [<button onClick={()=>close()}>ok</button>]
+  const close = x(content,buttons)
+};
+const confirm = (content: string, yes?: () => void, no?: () => void) => {
+  const buttons = [
+    <button onClick={() => {onYes()}}>yes</button>,
+    <button onClick={() => {onNo()}}>no</button>
+  ]
+  const close = x(content, buttons, no)
+  const onYes = () => {
+    close()
+    yes && yes()
+  }
+  const onNo = () => {
+    close()
+    no && no()
+  }
+};
+const modal = (content: ReactNode) => {
+  return x(content)
 }
 export {alert, confirm, modal}
 export default Dialog
