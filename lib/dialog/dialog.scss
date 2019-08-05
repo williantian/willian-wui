@@ -1,5 +1,6 @@
 @import "../helper";
 .wui-dialog{
+  z-index: 2; /*设置小一些 有需要可以再方便改*/
   position: fixed;
   background: white;
   min-width: 20em;
@@ -8,6 +9,7 @@
   left: 50%;
   transform: translate(-50%,-50%);
   &-mask{
+    z-index: 1;
     position: fixed;
     top: 0;
     left: 0;
