@@ -47,7 +47,7 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
 Dialog.defaultProps = {
   closeOnClickMask: false
 };
-const x = (content: string | ReactNode, buttons?: any,afterClose?:()=>void) => {
+const modal = (content: string | ReactNode, buttons?: any,afterClose?:()=>void) => {
   const onClose = () => {
     ReactDOM.render(React.cloneElement(component, {visible: false}), div)
     ReactDOM.unmountComponentAtNode(div)
@@ -63,14 +63,14 @@ const x = (content: string | ReactNode, buttons?: any,afterClose?:()=>void) => {
 };
 const alert = (content: string) => {
   const buttons = [<button onClick={()=>close()}>ok</button>]
-  const close = x(content,buttons)
+  const close = modal(content,buttons)
 };
 const confirm = (content: string, yes?: () => void, no?: () => void) => {
   const buttons = [
     <button onClick={() => {onYes()}}>yes</button>,
     <button onClick={() => {onNo()}}>no</button>
   ]
-  const close = x(content, buttons, no)
+  const close = modal(content, buttons, no)
   const onYes = () => {
     close()
     yes && yes()
@@ -80,8 +80,5 @@ const confirm = (content: string, yes?: () => void, no?: () => void) => {
     no && no()
   }
 };
-const modal = (content: ReactNode) => {
-  return x(content)
-}
 export {alert, confirm, modal}
 export default Dialog
