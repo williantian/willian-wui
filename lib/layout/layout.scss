@@ -1,13 +1,13 @@
 .wui-layout{
+  &-hasAside{
+    flex-direction: row;
+  }
+}
+.wui-layout{
   border: 1px solid red;
   display: flex;
   flex-direction: column;
-  &.hasAside{
-    flex-direction: row;
-    .wui-layout{
-      flex-direction: column;
-    }
-  }
+
   &-header{}
   &-content{
     border: 1px solid green;
@@ -19,4 +19,10 @@
     border: 1px solid blue;
   }
   &-footer{}
+  &-hasAside{
+    flex-direction: row;
+    & .wui-layout{
+      flex-direction: column;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import React, {HTMLAttributes} from 'react';
-import {scopedClassMaker} from "../dialog/classes";
+import {scopedClassMaker} from "../helpers/classes";
 const sc = scopedClassMaker('wui-layout');
 
 interface Props extends HTMLAttributes<HTMLElement>{

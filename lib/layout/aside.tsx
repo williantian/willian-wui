@@ -1,5 +1,5 @@
 import React from 'react';
-import {scopedClassMaker} from "../dialog/classes";
+import {scopedClassMaker} from "../helpers/classes";
 const sc = scopedClassMaker('wui-layout');
 const Aside: React.FunctionComponent = () => {
   return (
