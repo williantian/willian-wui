@@ -33,6 +33,15 @@ export default () => {
           </Layout>
           <Footer/>
         </Layout>
+        <h1>第四个例子</h1>
+        <Layout style={{height: 500}} className={'hi'}>
+          <Aside/>
+          <Layout>
+            <Header/>
+            <Content/>
+            <Footer/>
+          </Layout>
+        </Layout>
       </div>
     </div>
   );

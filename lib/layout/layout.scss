@@ -2,6 +2,12 @@
   border: 1px solid red;
   display: flex;
   flex-direction: column;
+  &.hasAside{
+    flex-direction: row;
+    .wui-layout{
+      flex-direction: column;
+    }
+  }
   &-header{}
   &-content{
     border: 1px solid green;
