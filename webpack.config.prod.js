@@ -16,4 +16,4 @@ module.exports = Object.assign({}, base, {
             root: 'ReactDOM',
         },
     }
-})
+});
