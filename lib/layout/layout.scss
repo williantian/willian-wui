@@ -7,14 +7,10 @@
     flex-grow: 1;
   }
   & &{
-    flex-direction: row;
     flex-grow: 1;
   }
   &-footer{}
   &-hasAside{
     flex-direction: row;
-    & .wui-layout{
-      flex-direction: column;
-    }
   }
 }
