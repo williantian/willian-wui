@@ -1,15 +1,19 @@
 import * as React from "react";
 import {ReactFragment} from "react";
-export interface FormValue{
+import Input from "../input/input";
+import classes from "../helpers/classes";
+import './form.scss';
+
+export interface FormValue {
   [K: string]: any;
 }
 interface Props {
-  value: FormValue ;
+  value: FormValue;
   fields: Array<{ name: string, label: string, input: { type: string } }>;
   buttons: ReactFragment;
   onSubmit: React.FormEventHandler;
   onChange: (value: FormValue) => void;
-  errors: {[K:string]: string[]};
+  errors: { [K: string]: string[] };
 }
 const Form: React.FunctionComponent<Props> = (props) => {
   const formData = props.value;
@@ -17,21 +21,32 @@ const Form: React.FunctionComponent<Props> = (props) => {
     e.preventDefault();
     props.onSubmit(e)
   };
-  const onInputChange = (name:string,value:string) => {
-    const newFormValue = {...formData, [name]:value};
+  const onInputChange = (name: string, value: string) => {
+    const newFormValue = {...formData, [name]: value};
     props.onChange(newFormValue)
   };
   return (
     <form onSubmit={onSubmit}>
-      {props.fields.map(f =>
-        <div key={f.name}>
-          {f.label}
-          <input type={f.input.type} value={formData[f.name]}
-                 onChange={(e)=>onInputChange(f.name ,e.target.value)}
-          />
-          <div>{props.errors[f.name]}</div>
-        </div>)}
-      <div>{props.buttons}</div>
+      <table>
+        {props.fields.map(f =>
+          <tr className={classes('wui-form-tr')} key={f.name}>
+            <td className="wui-form-td">
+              <span>{f.label}</span>
+            </td>
+            <td className="wui-form-td">
+              <Input type={f.input.type} value={formData[f.name]}
+                     onChange={(e) => onInputChange(f.name, e.target.value)}
+              />
+              <div>{props.errors[f.name]}</div>
+            </td>
+          </tr>)}
+        <tr className="wui-form-tr">
+          <td className="wui-form-td"/>
+          <td className="wui-form-td">
+            {props.buttons}
+          </td>
+        </tr>
+      </table>
     </form>
   )
 };

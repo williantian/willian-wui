@@ -1,0 +1,9 @@
+.wui-form {
+
+  &-td{
+    padding-bottom: 32px;
+  }
+  &-td + &-td {
+    padding-left: 8px;
+  }
+}

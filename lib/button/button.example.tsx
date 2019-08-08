@@ -1,7 +1,9 @@
 import React from 'react'
+import Button from "./button";
+
 const ButtonExample: React.FunctionComponent = () =>{
-    return (
-        <div>hello</div>
-    )
+  return (
+    <Button>hello</Button>
+  )
 };
 export default ButtonExample;
