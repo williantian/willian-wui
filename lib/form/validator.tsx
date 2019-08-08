@@ -40,7 +40,7 @@ const Validator = (formValue: FormValue, rules: FormRules): FormErrors => {
         addError(rule.key, '太长')
       }
     }
-    if(rule.pattern){
+    if(rule.pattern && !isEnpty(value)){
       if(!(rule.pattern.test(value))){
          addError(rule.key,'格式不对')
       }

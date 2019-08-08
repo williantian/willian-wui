@@ -1,9 +1,20 @@
 .wui-form {
-
+  &-table {
+    border-collapse: collapse; /*使td间没有空隙*/
+  }
+  &-label {
+    line-height: 32px;
+  }
   &-td{
-    padding-bottom: 32px;
+    vertical-align: top; /*td中字样靠上*/
+    padding-bottom: 8px;
   }
   &-td + &-td {
     padding-left: 8px;
+  }
+  &-error {
+    color: red;
+    margin-top: 4px;
+    font-size: 0.8em;
   }
 }

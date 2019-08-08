@@ -14,7 +14,9 @@ interface Props {
   onSubmit: React.FormEventHandler;
   onChange: (value: FormValue) => void;
   errors: { [K: string]: string[] };
+  errorDisplayMode: 'first' | 'all',
 }
+
 const Form: React.FunctionComponent<Props> = (props) => {
   const formData = props.value;
   const onSubmit: React.FormEventHandler = (e) => {
@@ -27,17 +29,22 @@ const Form: React.FunctionComponent<Props> = (props) => {
   };
   return (
     <form onSubmit={onSubmit}>
-      <table>
+      <table className="wui-form-table">
         {props.fields.map(f =>
           <tr className={classes('wui-form-tr')} key={f.name}>
             <td className="wui-form-td">
-              <span>{f.label}</span>
+              <span className="wui-form-label">{f.label}</span>
             </td>
             <td className="wui-form-td">
               <Input type={f.input.type} value={formData[f.name]}
                      onChange={(e) => onInputChange(f.name, e.target.value)}
               />
-              <div>{props.errors[f.name]}</div>
+              <div className="wui-form-error">{
+                props.errors[f.name] ? //判空
+                  (props.errorDisplayMode === 'first' ?
+                    props.errors[f.name][0] : props.errors[f.name].join('，')) :
+                   <span>{`请填写${f.name}`}</span>
+              }</div>
             </td>
           </tr>)}
         <tr className="wui-form-tr">
@@ -49,5 +56,8 @@ const Form: React.FunctionComponent<Props> = (props) => {
       </table>
     </form>
   )
+};
+Form.defaultProps = {
+  errorDisplayMode: 'first',
 };
 export default Form;

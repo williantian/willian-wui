@@ -21,9 +21,12 @@ const FormExample: React.FunctionComponent = () => {
       {key: 'username', required: true},
       {key: 'username', minLength: 8, maxLength: 16},
       {key: 'username', pattern: /^[A-Za-z0-9]+$/},
+      {key: 'password', required: true},
+      {key: 'password', minLength: 8, maxLength: 16},
     ];
     const errors = Validator(formData, rules);
     setErrors(errors);
+    console.log(errors);
   };
   return (
     <div>
