@@ -8,6 +8,7 @@ import './lib/index.scss';
 import {Layout, Aside, Content, Header, Footer} from "./lib/layout/layout";
 import './example.scss';
 import IconDemo from "./lib/icon/icon.demo";
+import FormExample from "./lib/form/form.example";
 
 const logo = require('./logo.png');
 console.log(typeof logo);
@@ -36,6 +37,9 @@ ReactDOM.render(
                       <li>
                           <NavLink to='/layout'>layout</NavLink>
                       </li>
+                      <li>
+                          <NavLink to='/form'>form</NavLink>
+                      </li>
                   </ul>
               </Aside>
               <Content className="site-content">
@@ -43,6 +47,7 @@ ReactDOM.render(
                   <Route path='/button' component={ButtonExample}/>
                   <Route path='/dialog' component={DialogExample}/>
                   <Route path='/layout' component={LayoutExample}/>
+                  <Route path='/form' component={FormExample}/>
               </Content>
           </Layout>
           <Footer className="site-footer">&copy; WUI 2019</Footer>
