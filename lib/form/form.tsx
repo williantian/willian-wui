@@ -16,7 +16,6 @@ interface Props {
   errors: { [K: string]: string[] };
   errorDisplayMode?: 'first' | 'all',
 }
-
 const Form: React.FunctionComponent<Props> = (props) => {
   const formData = props.value;
   const onSubmit: React.FormEventHandler = (e) => {
@@ -30,6 +29,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
   return (
     <form onSubmit={onSubmit}>
       <table className="wui-form-table">
+        <tbody>
         {props.fields.map(f =>
           <tr className={classes('wui-form-tr')} key={f.name}>
             <td className="wui-form-td">
@@ -43,7 +43,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
                 props.errors[f.name] ? //判空
                   (props.errorDisplayMode === 'first' ?
                     props.errors[f.name][0] : props.errors[f.name].join('，')) :
-                   <span>{`请填写${f.name}`}</span>
+                  <span>{`请填写${f.name}`}</span>
               }</div>
             </td>
           </tr>)}
@@ -53,6 +53,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
             {props.buttons}
           </td>
         </tr>
+        </tbody>
       </table>
     </form>
   )
