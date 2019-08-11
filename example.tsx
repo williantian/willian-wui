@@ -11,7 +11,6 @@ import IconDemo from "./lib/icon/icon.demo";
 import FormExample from "./lib/form/form.example";
 
 const logo = require('./logo.png');
-console.log(typeof logo);
 ReactDOM.render(
   <Router>
       <Layout className="site-page">
