@@ -7,19 +7,19 @@ import Button from "../button/button";
 const userNames = ['jack', 'joe', 'bob', 'jane'];
 const checkUserName = (username: string, succeed: () => void, fail: () => void) => {
   setTimeout(() => {
-    console.log('我现在知道用户名是否存在了');
     if (userNames.indexOf(username) >= 0) {
       fail()
     } else {
       succeed()
     }
-  }, 3000)
+  }, 500)
 };
 const FormExample: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<FormValue>({
     username: '',
     password: ''
   });
+  //form校验
   const [fields] = useState([
     {name: 'username', label: '用户名', input: {type: 'text'}},
     //{name: 'username', label: 'shuru', input: ()=>{return <AntInput/>}},
@@ -51,7 +51,6 @@ const FormExample: React.FunctionComponent = () => {
     ];
     Validator(formData, rules,(errors)=>{
        setErrors(errors);
-       console.log(errors);
     });
   };
   return (

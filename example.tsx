@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Route,  NavLink} from 'react-router-dom';
-import ButtonExample from './lib/button.example';
 import DialogExample from './lib/dialog/dialog.example';
 import LayoutExample from './lib/layout/layout.example';
 import './lib/index.scss';
@@ -9,6 +8,7 @@ import {Layout, Aside, Content, Header, Footer} from "./lib/layout/layout";
 import './example.scss';
 import IconDemo from "./lib/icon/icon.demo";
 import FormExample from "./lib/form/form.example";
+import ButtonDemo from "./lib/button/button.demo";
 
 const logo = require('./logo.png');
 ReactDOM.render(
@@ -43,7 +43,7 @@ ReactDOM.render(
               </Aside>
               <Content className="site-content">
                   <Route path='/icon' component={IconDemo}/>
-                  <Route path='/button' component={ButtonExample}/>
+                  <Route path='/button' component={ButtonDemo}/>
                   <Route path='/dialog' component={DialogExample}/>
                   <Route path='/layout' component={LayoutExample}/>
                   <Route path='/form' component={FormExample}/>

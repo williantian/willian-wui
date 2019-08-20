@@ -31,10 +31,12 @@ const Validator = (formValue: FormValue, rules: FormRules, callback: (errors: an
   };
   rules.map(rule => {
     const value = formValue[rule.key];
-    if (rule.validator) {
+    if (rule.validator){
       //说明是自定义校验器
       const promise = rule.validator.validate(value);
-      addError(rule.key, {message: '用户名已存在', promise})
+      promise.then(()=>{},()=>{
+        addError(rule.key, {message: '用户名已存在', promise})
+      })
     }
     if (rule.required) {
       if (isEmpty(value)) {
@@ -56,16 +58,21 @@ const Validator = (formValue: FormValue, rules: FormRules, callback: (errors: an
         addError(rule.key, {message: '格式不正确'})
       }
     }
+
   });
+
   const promiseList = flat(Object.values(errors))
     .filter(item => item.promise).map(item => item.promise);
   Promise.all(promiseList).then(() => {
-    const newErrors = fromEntries(Object.keys(errors)
+     //bug  //Object.keys(errors)只得到了password
+    const newErrors = fromEntries(
+      Object.keys(errors)
       .map(key => [key,errors[key].map((item: OneError) => item.message)]));
     callback(newErrors)
   }, () => {
-    const newErrors = fromEntries(Object.keys(errors)
-      .map(key => [key,errors[key].map((item: OneError) => item.message)]));
+    const newErrors = fromEntries(
+      Object.keys(errors)
+        .map(key => [key,errors[key].map((item: OneError) => item.message)]));
     callback(newErrors)
   });
 };

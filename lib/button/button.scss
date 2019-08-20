@@ -1,4 +1,5 @@
 @import "../_helper";
+$red:#ff4d4f;
 $color:lighten(#333,50%);
 .wui-button {
   padding: 4px 16px;
@@ -28,6 +29,12 @@ $color:lighten(#333,50%);
 
   }
   &-dangerous {
-
+    color: white;
+    border: 1px solid $red;
+    background: $red;
+    &:hover, &:focus {
+      background: lighten($red,10%);
+      border-color: lighten($red,10%);
+    }
   }
 }

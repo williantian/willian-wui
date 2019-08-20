@@ -43,7 +43,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
                 props.errors[f.name] ? //判空
                   (props.errorDisplayMode === 'first' ?
                     props.errors[f.name][0] : props.errors[f.name].join('，')) :
-                  <span>{`请填写${f.name}`}</span>
+                  <span>&ensp;</span>
               }</div>
             </td>
           </tr>)}

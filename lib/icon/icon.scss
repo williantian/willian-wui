@@ -4,3 +4,8 @@
   display: inline-block;
   fill: currentColor;
 }
+.wui-example-icon {
+  & svg {
+    margin: 4px;
+  }
+}

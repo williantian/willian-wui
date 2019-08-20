@@ -4,6 +4,7 @@ import './dialog.scss';
 import Icon from '../icon/icon';
 import {scopedClassMaker} from "../helpers/classes";
 
+
 interface Props {
   visible: boolean;
   buttons?: Array<ReactElement>

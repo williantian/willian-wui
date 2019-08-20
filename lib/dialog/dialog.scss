@@ -1,4 +1,5 @@
 @import "../helper";
+$color:lighten(#333,50%);
 .wui-dialog{
   z-index: 2; /*设置小一些 有需要可以再方便改*/
   position: fixed;
@@ -45,4 +46,30 @@
     display: flex;
     justify-content: flex-end;
   }
+}
+button {
+  padding: 4px 16px;
+  line-height: 22px;
+  transition: all 250ms;
+  cursor: pointer;
+  color: #333;
+  border: 1px solid $color;
+  background: white;
+  &:focus {
+    outline: none;
+  }
+  &:hover, &:focus {
+    border-color: $main-color;
+    color: $main-color;
+  }
+}
+.wui-dialog-main{
+  padding: 8px 16px;
+  > h1 >button {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 8px 16px;
+  }
+
 }

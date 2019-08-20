@@ -1,0 +1,13 @@
+$display:block;
+$color:blue;
+.example-iconContainer {
+  display: flex;
+  justify-content: center;
+  $color:red;
+  &-icon {
+    $display:none;
+
+  }
+}
+.example-iconContainer-span {
+}
